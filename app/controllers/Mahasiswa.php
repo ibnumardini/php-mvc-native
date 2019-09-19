@@ -22,10 +22,13 @@ class Mahasiswa extends Controller
     {
         $query = $this->model('Mahasiswa_model')->tambahDataMahasiswa($_POST);
         if ($query = 1) {
+            Flasher::setFlash('berhasil', 'ditambahkan', 'success');
             header('Location:' . BASE_URL . '/mahasiswa');
             exit;
         } else {
-            echo "Gagal di tambahkan";
+            Flasher::setFlash('gagal', 'ditambahkan', 'danger');
+            header('Location:' . BASE_URL . '/mahasiswa');
+            exit;
         }
     }
 }

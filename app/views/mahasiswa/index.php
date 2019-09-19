@@ -2,6 +2,12 @@
     <div class="row">
         <div class="col-lg-6">
 
+            <div class="row">
+                <div class="col-lg-12">
+                    <?php Flasher::flash() ?>
+                </div>
+            </div>
+
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formModal">
                 Tambah Data
             </button>
