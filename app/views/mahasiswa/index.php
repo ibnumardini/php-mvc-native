@@ -8,16 +8,34 @@
                 </div>
             </div>
 
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formModal">
-                Tambah Data
-            </button>
+            <div class="row mb-3">
+                <div class="col-lg-6">
+                    <button type="button" class="btn btn-primary tombolTambahData" data-toggle="modal" data-target="#formModal">
+                        Tambah Data
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <form action="<?= BASE_URL ?>/mahasiswa/cari" method="post">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="cari mahasiswa" name="keyword" id="keyword" autocomplete="off">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit" id="tombolCari">Cari</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
-            <h3 class="mt-4">Daftar Mahasiswa</h3>
+            <h3 class="mt-2">Daftar Mahasiswa</h3>
             <ul class="list-group mt-4">
                 <?php foreach ($data['mhs'] as $mhs) : ?>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <li class="list-group-item">
                         <?= $mhs['nama'] ?>
-                        <a href="<?= BASE_URL ?>/mahasiswa/detail/<?= $mhs['id'] ?>" class="badge badge-info">detail</a>
+                        <a href="<?= BASE_URL ?>/mahasiswa/hapus/<?= $mhs['id'] ?>" class="badge badge-danger float-right ml-1" onclick="return confirm('yakin akhi?')">hapus</a>
+                        <a href="<?= BASE_URL ?>/mahasiswa/ubah/<?= $mhs['id'] ?>" class="badge badge-warning float-right ml-1 tampilModalUbah" data-toggle="modal" data-target="#formModal" data-id="<?= $mhs['id'] ?>">ubah</a>
+                        <a href="<?= BASE_URL ?>/mahasiswa/detail/<?= $mhs['id'] ?>" class="badge badge-info float-right ml-1">detail</a>
                     </li>
                 <?php endforeach; ?>
             </ul>
@@ -37,6 +55,8 @@
             <div class="modal-body">
 
                 <form action="<?= BASE_URL ?>/mahasiswa/tambah" method="post">
+
+                    <input type="hidden" name="id" id="id">
 
                     <div class="form-group">
                         <label for="nama">Nama</label>
